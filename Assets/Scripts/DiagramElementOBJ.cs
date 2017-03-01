@@ -54,12 +54,14 @@ public class DiagramElementOBJ : MonoBehaviour {
 		CurrentColorUnderMouse = GameManager.colorBelowMousePointer;
 
 		float roomForError = .15f;
+		//Input.touchCount > 0 && 
 		if (Input.touchCount > 0 && (CurrentColorUnderMouse.r + roomForError >=  this.elementColor.r && CurrentColorUnderMouse.r - roomForError <=  this.elementColor.r) &&
 			(CurrentColorUnderMouse.g + roomForError >=  this.elementColor.g && CurrentColorUnderMouse.g - roomForError <=  this.elementColor.g) &&
 			(CurrentColorUnderMouse.b + roomForError >=  this.elementColor.b && CurrentColorUnderMouse.b - roomForError <=  this.elementColor.b) &&
 			CurrentColorUnderMouse.a != 0) {
 				
 			if (CurrentColorUnderMouse != PrevColorUnderMouse) {
+				print ("why2");
 				timer = 0;
 				EasyTTSUtil.StopSpeech ();
 				toSpeak = elementLabel;
@@ -78,17 +80,17 @@ public class DiagramElementOBJ : MonoBehaviour {
 			}
 			else {
 				timer++;
-
+				print ("why");
 				if (timer == 10 && toSpeak != "") {
-					EasyTTSUtil.StopSpeech ();
+//					EasyTTSUtil.StopSpeech ();
 					EasyTTSUtil.SpeechAdd (toSpeak);
-					toSpeak = "";
+					print (toSpeak);
 				}
 
 				if (timer == 55 && toSpeak2 != "") {
-					EasyTTSUtil.StopSpeech ();
+					print ("eh");
+//					EasyTTSUtil.StopSpeech ();
 					EasyTTSUtil.SpeechAdd (toSpeak2);
-					toSpeak2 = "";
 				}
 			}
 
@@ -100,7 +102,7 @@ public class DiagramElementOBJ : MonoBehaviour {
 			}
 			toSpeak = "";
 			toSpeak2 = "";
-			EasyTTSUtil.StopSpeech ();
+//			EasyTTSUtil.StopSpeech ();
 		}
 
 		PrevColorUnderMouse = CurrentColorUnderMouse;

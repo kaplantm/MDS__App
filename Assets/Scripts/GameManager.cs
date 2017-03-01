@@ -20,6 +20,7 @@ public class GameManager: MonoBehaviour {
 	public static bool FingerMoving;
 	public static Touch touch;
 	public static string diagramTitle = "New Diagram";
+	public static float timer = 0;
 
 	void Start(){
 	}
@@ -30,7 +31,7 @@ public class GameManager: MonoBehaviour {
 		 if(Input.touchCount > 0){ //if there is any touch
             touch = Input.GetTouch(0);
 		}
-		else{
+		else if(Time.time-timer>5){
 			EasyTTSUtil.StopSpeech ();
 		}
 	}
@@ -42,7 +43,7 @@ public class GameManager: MonoBehaviour {
 				elementList [piecewiseStep].GetComponent<DiagramElementOBJ> ().enabled = true;
 				elementList [piecewiseStep].SetActive (true);
 				EasyTTSUtil.StopSpeech ();
-				
+
 				if(piecewiseStep == 0){
 				EasyTTSUtil.SpeechAdd (diagramTitle+", Loaded, " + elementList [piecewiseStep].GetComponent<DiagramElementOBJ> ().elementLabel+".");
 				}

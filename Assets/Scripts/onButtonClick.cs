@@ -6,10 +6,10 @@ public class onButtonClick : MonoBehaviour {
 	
 	public InputField Field;
 	public Toggle piecewiseToggle;
-	public Toggle audioToggle;
+	public Toggle audioToggle ;
 	public Toggle hapticToggle;
-	bool autoStart = false;
-	string autoStartDiagramNumber = "104.png";
+	bool autoStart = true;
+	string autoStartDiagramNumber = "114.png";
 	//112.png - cell diagram
 	//104.png - atmosphere diagram
 	string[] urlParts;
@@ -34,12 +34,16 @@ public class onButtonClick : MonoBehaviour {
 		GameManager.piecewise = piecewiseToggle.isOn;
 		GameManager.audio = audioToggle.isOn;
 		GameManager.haptic = hapticToggle.isOn;
+		GameManager.timer = Time.time;
 	}
 	public void autoStartFunction(){
+		piecewiseToggle.isOn = false;
+		audioToggle.isOn = true;
+		hapticToggle.isOn = true;
+		GameManager.timer = Time.time;
 		urlParts= autoStartDiagramNumber.Split('.');
-		print (GameManager.piecewise);
 		GameManager.url = "http://tonarie.com/php/uploads/"+autoStartDiagramNumber;
 		GameManager.textUrl = "http://tonarie.com/php/uploads/"+urlParts[0]+".txt";
-		GameManager.piecewise = piecewiseToggle.isOn;
 	}
+
 }

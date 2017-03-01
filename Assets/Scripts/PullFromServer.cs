@@ -40,6 +40,7 @@ public class PullFromServer : MonoBehaviour {
 			}
 			else if(title == "!" && longStringFromFile != " " && counter == LineList.Length && GameManager.piecewise == false){
 				title = GameManager.diagramTitle;
+				print (title);
 				EasyTTSUtil.SpeechAdd(title);
 			}
 			
